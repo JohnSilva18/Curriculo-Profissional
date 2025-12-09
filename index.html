@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Currículo Profissional - Jonatas Silva Santos</title> <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <style>
+        /* RESPONSIVIDADE PARA CELULARES */
+        @media (max-width: 768px) {
+
+            body {
+                overflow-x: hidden !important;
+            }
+
+            /* Botão de download menor e ajustado */
+            #download-btn {
+                position: fixed;
+                top: 15px;
+                right: 15px;
+                padding: 6px 12px;
+                font-size: 14px;
+                z-index: 9999;
+            }
+
+            /* Ajuste da foto */
+            .header-print img,
+            .profile-img {
+                width: 110px !important;
+                height: 110px !important;
+                margin-bottom: 10px;
+            }
+
+            /* Títulos menores */
+            .section-title {
+                font-size: 20px;
+                letter-spacing: 1px;
+                margin-bottom: 15px;
+            }
+
+            /* Caixa criativa com menos padding */
+            .creative-box {
+                padding: 20px !important;
+                border-radius: 15px !important;
+            }
+
+            /* Conteúdo mais compacto */
+            .creative-box p,
+            .creative-box li {
+                font-size: 15px !important;
+                line-height: 1.4;
+            }
+
+            /* Evitar rolagem horizontal */
+            .container,
+            .row,
+            .col-12 {
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 10px !important;
+            }
+
+            /* Texto sempre visível */
+            h1,
+            h2 {
+                font-size: 22px !important;
+                text-align: center !important;
+            }
+        }
+
+
+        body {
+            background: #1b1b1b;
+            font-family: 'Poppins', sans-serif;
+            color: #eee;
+            overflow-x: hidden;
+        }
+
+
+        #download-btn {
+            position: absolute;
+            top: 30px;
+            /* ajuste como quiser */
+            right: 20px;
+            /* grudadinho na direita */
+
+        }
+
+        /* Bolhas animadas */
+        .bubble {
+            position: absolute;
+            bottom: -150px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rise 12s infinite ease-in;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(-1200px) scale(1.4);
+                opacity: 0;
+            }
+        }
+
+        /* Colunas suspensas */
+        .card-floating {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        .card-floating:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 600;
+        }
+
+        .bubble-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        /* Seções criativas */
+        .section-title {
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .creative-box {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.4));
+            border-radius: 25px;
+            padding: 40px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.7);
+            transition: .4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .creative-box:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        .light-orb {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent 70%);
+            border-radius: 50%;
+            top: -40px;
+            right: -40px;
+            filter: blur(10px);
+            animation: float 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(25px);
+            }
+        }
+
+        /* Lista de habilidades estilizada */
+        .skill-item {
+            background: rgba(255, 255, 255, 0.07);
+            padding: 12px 18px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            backdrop-filter: blur(6px);
+            transition: .3s;
+        }
+
+        .skill-item:hover {
+            transform: translateX(8px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .creative-box p {
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="download-btn" class="btn btn-light">Baixar Currículo</button>
+    <!-- Bolhas -->
+    <div class="bubble-container">
+        <script>
+            document.getElementById('download-btn').addEventListener('click', function () {
+                fetch('Currículo Profissional - Jonatas.pdf')
+                    .then(response => response.blob())
+                    .then(blob => {
+                        const url = URL.createObjectURL(blob);
+
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'Currículo Profissional - Jonatas.pdf';
+                        a.click();
+
+                        URL.revokeObjectURL(url);
+                    })
+                    .catch(error => console.error('Erro ao baixar o arquivo:', error));
+            });
+
+
+            for (let i = 0; i < 25; i++) {
+                let bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.animationDelay = Math.random() * 10 + 's';
+                bubble.style.width = bubble.style.height = (20 + Math.random() * 60) + 'px';
+                document.querySelector('.bubble-container').appendChild(bubble);
+            }
+        </script>
+    </div> <!-- Header -->
+
+    <header class="text-center py-5">
+        <h1 style="letter-spacing: 2px;">Currículo Profissional - Jonatas Silva Santos</h1>
+    </header>
+    <div class="container pb-5">
+        <div class="row g-4">
+            <div class="col-12 mb-4">
+                <div class="creative-box">
+                    <div class="d-flex align-items-center"> <img src="image.png"
+                            style="width: 150px; height: 150px; border-radius: 5px;" alt="Foto"
+                            class="profile-img me-4" />
+                        <div>
+                            <h2>Jonatas Silva Santos</h2>
+                            <p>Email: jonatasssantos18@gmail.com</p>
+                            <p>Telefone: (77) 98809-0431</p>
+                            <p>Vitória da Conquista - BA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <div class="creative-box">
+                    <div class="light-orb"></div>
+                    <h2 class="section-title">Objetivo profissional</h2>
+                    <p>Contribuir para o desenvovimento da empresa aplicando um raciocínio lógico sólido e a
+                        capacidade de transformar dados brutos em informações úteis para a tomada de decisão. Meu
+                        objetivo é evoluir profissionalmente para cargos de análise de dados, inteligência comercial
+                        ou áreas de tecnologia voltadas a soluções analíticas e tomada de decisões.</p>
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <div class="creative-box">
+                    <div class="light-orb"></div>
+                    <h2 class="section-title">Escolaridade</h2>
+                    <ul>
+                        <li><strong>Ensino Médio </strong>                               | Colégio Estadual José Sá Nunes   – 2019 - 2021</li>
+                        <li><strong>Técnico em Informática </strong>            | IFBA Vitória da Conquista – 2022 - 2024</li>
+                        <li><strong>Sistemas de Informação Bacharelado </strong>| Faculdade Anhanguera             – 2022- 2026</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <div class="creative-box">
+                    <div class="light-orb"></div>
+                    <h2 class="section-title">Experiência Profissional</h2>
+                    <ul>
+                        <li><strong>Aprendiz Administrativo - Neoenergia Coelba | 2022 - 2024</strong>
+                            <p>Gestão de processos administrativos e financeiros; Elaboração e entrega de relatórios e
+                                monitoramento de gastos; Realização de auditorias para garantir conformidade e precisão
+                                financeira; Regularização e atualização dos registros de equipamentos no sistema SAP;
+                                Regularização contratual de clientes em sistema; Controle de Frota em sistema Vfleets;
+                                Apoio em almoxarifado para devolução de equipamentos;</p>
+                            <br>
+                        <li><strong>Auxiliar Administrativo - Votre Inteligência e Logística | 2025 - Atual</strong>
+                            <p>Gestão de indicadores comerciais (KPIs), atuando no acompanhamento de metas, performance
+                                de vendas e desempenho de representantes. Criação, atualização e manutenção de
+                                relatórios gerenciais em Excel avançado, com aplicação de fórmulas e cruzamento de dados
+                                para suporte à tomada de decisão. Apoio no desenvolvimento, execução e monitoramento de
+                                campanhas comerciais; Alimentação e controle de planilhas para análise de resultados e
+                                desempenho das estratégias comerciais. Utilização do sistema TOTVS;
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <div class="creative-box">
+                    <div class="light-orb"></div>
+                    <h2 class="section-title">Cursos Complementares</h2>
+                    <ul>
+                        <li><strong>Assistente Administrativo </strong>- SENAI | 12/2022 | 160 Horas
+                        <li><strong>Pacote Office </strong>- Intituição Bradesco | 12/2022 | 160 Horas
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <div class="creative-box">
+                    <div class="light-orb"></div>
+                    <h2 class="section-title">Habilidades e Competências</h2>
+                    <ul>
+                        <li>
+                            <n>Excel Intermediário-Avançado</n>
+                        </li>
+                        <li>Sistemas</li>
+                        <li>Trabalho em equipe</li>
+                        <li>Flexibilidade</li>
+                        <li>Lógica de Dados</li>
+                        <li>Capacidade Analítica</li>
+                        <li>Estruturação de Dados</li>
+                        <li>Responsabilidade</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <div class="creative-box">
+                    <div class="light-orb"></div>
+                    <h2 class="section-title">Contatos e Portifólios</h2>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/5577988090431" target="_blank">Enviar
+                            mensagem</a></p>
+                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jonatas-silva-santos/"
+                            target="_blank">Perfil profissional</a></p>
+                    <p><strong>Portifólio:</strong> <a href="https://johnsilva18.github.io/Portifolio-Pessoal/?v=2"
+                            target="_blank">Portifólio profissional</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
